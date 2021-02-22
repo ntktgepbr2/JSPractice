@@ -11,6 +11,4 @@ var name = "Ivar";
   const result = 50;
 }
 console.log(result); //let/const isnt reacheble out of its own brackets,but var is.
-
-b = 125;
-console.log(b);
+console.log(typeof 123);
