@@ -8,7 +8,7 @@
 // "Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
 // 4) Потренироваться и переписать цикл еще двумя способами*/
 
-let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", ""),
+let numberOfFilms,
   //   lastWatchedFilm = prompt("Один из последних просмотренных фильмов?", ""),
   //   lastWatchedFilm2 = prompt("Один из последних просмотренных фильмов?", ""),
   //   filmRate = prompt("Его оценка?", "");
@@ -19,8 +19,15 @@ let numberOfFilms = prompt("Сколько фильмов вы уже посмо
     movies: {},
     actors: {},
     genres: [],
-    privat: false,
+    privat: true,
   };
+function howManyMovies() {
+  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
+    personalMovieDB.count = numberOfFilms;
+  }
+}
+howManyMovies();
 
 for (i = 0; i < 2; i++) {
   (lastWatchedFilm = prompt("Один из последних просмотренных фильмов?", "")),
@@ -40,14 +47,33 @@ for (i = 0; i < 2; i++) {
 
 // personalMovieDB.movies[lastWatchedFilm] = filmRate;
 console.log(personalMovieDB);
-switch (true) {
-  case personalMovieDB.count < 10:
-    console.log("Malo filmov");
-    break;
-  case personalMovieDB.count >= 10 && personalMovieDB.count < 30:
-    console.log("Not Bad");
-    break;
-  case personalMovieDB.count > 30:
-    console.log("Kino Maniac");
-    break;
+function moviesQuantity() {
+  switch (true) {
+    case personalMovieDB.count < 10:
+      console.log("Malo filmov");
+      break;
+    case personalMovieDB.count >= 10 && personalMovieDB.count < 30:
+      console.log("Not Bad");
+      break;
+    case personalMovieDB.count > 30:
+      console.log("Kino Maniac");
+      break;
+  }
 }
+moviesQuantity();
+
+function showMyDb(params) {
+  if (personalMovieDB.privat == false) {
+    console.log(personalMovieDB);
+  }
+}
+showMyDb();
+function writeYourGenres(params) {
+  for (i = 0; i < 3; i++) {
+    personalMovieDB.genres[i] = prompt(
+      `Ваш любимый жанр под номером ${i + 1}`,
+      ""
+    );
+  }
+}
+writeYourGenres();
