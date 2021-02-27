@@ -21,13 +21,14 @@ let numberOfFilms,
     genres: [],
     privat: true,
   };
-function howManyMovies() {
+personalMovieDB.howManyMovies = function () {
   while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
     numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
     personalMovieDB.count = numberOfFilms;
   }
-}
-howManyMovies();
+};
+
+personalMovieDB.howManyMovies();
 
 for (i = 0; i < 2; i++) {
   (lastWatchedFilm = prompt("Один из последних просмотренных фильмов?", "")),
@@ -46,8 +47,8 @@ for (i = 0; i < 2; i++) {
 }
 
 // personalMovieDB.movies[lastWatchedFilm] = filmRate;
-console.log(personalMovieDB);
-function moviesQuantity() {
+
+personalMovieDB.moviesQuantity = function () {
   switch (true) {
     case personalMovieDB.count < 10:
       console.log("Malo filmov");
@@ -59,21 +60,40 @@ function moviesQuantity() {
       console.log("Kino Maniac");
       break;
   }
-}
-moviesQuantity();
+};
+personalMovieDB.moviesQuantity();
 
-function showMyDb(params) {
+personalMovieDB.showMyDb = function () {
   if (personalMovieDB.privat == false) {
     console.log(personalMovieDB);
   }
-}
-showMyDb();
-function writeYourGenres(params) {
+};
+
+personalMovieDB.writeYourGenres = function (params) {
   for (i = 0; i < 3; i++) {
     personalMovieDB.genres[i] = prompt(
       `Ваш любимый жанр под номером ${i + 1}`,
       ""
     );
+    if (personalMovieDB.genres[i] == null || personalMovieDB.genres[i] == "") {
+      i--;
+    }
   }
-}
-writeYourGenres();
+
+  personalMovieDB.genres.forEach((movie, i) =>
+    console.log(`Любимый жанр №${i + 1} - это ${movie}`)
+  );
+};
+personalMovieDB.writeYourGenres();
+
+personalMovieDB.toggleVisibleMyDB = function () {
+  if (personalMovieDB.privat != true) {
+    personalMovieDB.privat = true;
+  } else if (personalMovieDB.privat != false) {
+    personalMovieDB.privat = false;
+  }
+  console.log(personalMovieDB.privat);
+};
+personalMovieDB.toggleVisibleMyDB();
+
+personalMovieDB.showMyDb();

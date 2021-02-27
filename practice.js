@@ -15,4 +15,11 @@
 
 const text = "World war Third";
 
-console.log(text.slice(6, 11));
+console.log(text.slice(1, 5));
+console.log(text.substr(0, 5));
+
+function myFunction(x, y, z) {
+  console.log(x + y + z);
+}
+var args = [0, 1, 2];
+myFunction.apply("", args);
